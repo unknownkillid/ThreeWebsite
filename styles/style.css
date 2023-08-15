@@ -1,0 +1,402 @@
+@import url("https://fonts.googleapis.com/css2?family=Wix+Madefor+Text&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Acme", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.carouselSection {
+  width: 100%;
+  height: 931px;
+  background-position: center;
+  overflow: hidden;
+  background-color: rgb(21, 4, 41);
+  z-index: 2;
+  position: relative;
+}
+.carouselSection .main-content-container {
+  width: 100%;
+  height: 90%;
+  background-color: transparent;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 50px;
+}
+.carouselSection .main-content-container .content-container-about {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 100px;
+  gap: 100px;
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: contentComeIn 1s forwards;
+}
+@keyframes contentComeIn {
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+.carouselSection .main-content-container .content-container-about .name {
+  font-size: 100px;
+  font-family: "Acme", sans-serif !important;
+}
+.carouselSection .game-card-div {
+  width: 900px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+}
+.carouselSection .game-card-div .image-container {
+  width: 400px;
+  height: 200px;
+  background-image: url(../assets/shutterstock_1553667305\ edited.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.carouselSection .game-card-div .gameContent-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.carouselSection .game-card-div .gameContent-container .view-game-container a {
+  text-decoration: none;
+  color: white;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: 0.7s;
+}
+.carouselSection .game-card-div .gameContent-container .view-game-container a:hover {
+  color: rgb(212, 237, 49);
+}
+.carouselSection .game-card-div .gameContent-container .view-game-container a i {
+  font-size: xx-large;
+}
+.carouselSection .game-card-div .latest-work-container h5 {
+  font-size: large !important;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 30px;
+}
+.carouselSection .videoBGMain {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.carouselSection .navbar {
+  width: 100%;
+  height: 70px;
+  border-bottom: 2px solid white;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0 70px;
+  position: fixed;
+  z-index: 3;
+  transition: 1s;
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: navbarDown 1s forwards;
+  animation-delay: 1s;
+}
+@keyframes navbarDown {
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+.carouselSection .navbar .logo {
+  font-size: xx-large;
+}
+.carouselSection .navbar .links a {
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  font-size: large;
+}
+
+.second-section {
+  width: 100%;
+  height: 1400px;
+  background-color: rgb(21, 4, 41);
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid white;
+}
+.second-section .portfolioTitle {
+  width: 100%;
+  height: 120px;
+  border-bottom: 2px solid white;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 40px;
+  padding: 0 100px;
+  font-family: "Acme", sans-serif !important;
+  opacity: 0;
+  transition: 1s;
+}
+.second-section .first-portfolio-project-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.second-section .first-portfolio-project-container .numberContainer {
+  color: white;
+  width: 400px;
+  height: 100vh;
+  padding: 50px;
+}
+.second-section .first-portfolio-project-container .numberContainer .number1 {
+  font-size: 60px;
+  font-family: "Wix Madefor Text", sans-serif;
+}
+.second-section .first-portfolio-project-container .numberContainer .title {
+  transform: rotateZ(-90deg) translateY(-100px) translateX(-200px);
+}
+.second-section .first-portfolio-project-container .image-and-content-container {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 70px;
+  padding: 40px 0;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .soldierMainContainer {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 50px;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .viewGame-content {
+  padding: 0 150px;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 300px;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .viewGame-content a {
+  color: white;
+  text-decoration: none;
+  font-size: xx-large;
+  width: 700px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  transition: 0.7;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .viewGame-content a i {
+  color: rgb(212, 237, 49);
+  font-size: 50px;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .viewGame-content p {
+  width: 600px;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .viewGame-content .ViewGameButton {
+  width: 200px;
+  height: 70px;
+  border-radius: 60px;
+  background: none;
+  color: white;
+  outline: none;
+  border: 1px solid white;
+  font-size: large;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.second-section .first-portfolio-project-container .image-and-content-container .viewGame-content .ViewGameButton:hover {
+  color: rgb(1, 45, 102);
+  font-weight: 700;
+  font-size: 20px;
+  background-color: rgb(212, 237, 49);
+}
+
+.small-all-games-section {
+  width: 100%;
+  height: 350px;
+  background-color: rgb(21, 4, 41);
+  border-bottom: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.small-all-games-section .characters {
+  width: 600px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 50px;
+}
+.small-all-games-section .characters h1 {
+  font-size: 50px;
+  color: white;
+}
+.small-all-games-section .games {
+  width: 600px;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding: 0 50px;
+}
+.small-all-games-section .games a {
+  color: white;
+  text-decoration: none;
+  font-size: 50px;
+}
+.small-all-games-section .games a i {
+  color: rgb(212, 237, 49);
+}
+
+.game-charcters-section {
+  width: 100%;
+  height: 1100px;
+  background-color: rgb(21, 4, 41);
+}
+.game-charcters-section .cards-container {
+  width: 100%;
+  height: 900px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  transition: 1s;
+}
+.game-charcters-section .cards-container .image {
+  width: 550px;
+  height: 700px;
+  border-radius: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.7s;
+}
+.game-charcters-section .cards-container .image .purple-card-shadow {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  transition: 1s;
+}
+.game-charcters-section .cards-container .image .purple-card-shadow:hover {
+  box-shadow: inset 0px -30px 200px rgb(21, 4, 41);
+}
+.game-charcters-section .cards-container .cardimageContainer {
+  background-image: url(../assets/card1.webp);
+}
+.game-charcters-section .cards-container .cardimageContainer2 {
+  background-image: url(../assets/card2.webp);
+}
+.game-charcters-section .cards-container .cardimageContainer3 {
+  background-image: url(../assets/card3.webp);
+}
+.game-charcters-section .cards-container .card {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transition: 0.7s;
+}
+.game-charcters-section .see-all-characters-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 50px;
+}
+.game-charcters-section .see-all-characters-container a {
+  color: white;
+  text-decoration: none;
+  font-size: xx-large;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  transition: 0.6s;
+}
+.game-charcters-section .see-all-characters-container a:hover {
+  color: rgb(212, 237, 49);
+}
+.game-charcters-section .see-all-characters-container a i {
+  font-size: 50px;
+}
+
+.navbarFixed {
+  background-color: rgb(21, 4, 41) !important;
+}
+
+.footer-container {
+  width: 100%;
+  height: 200px;
+  background-color: rgb(21, 4, 41);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 100px;
+  padding: 0 100px;
+  border-top: 2px solid white;
+}
+.footer-container .fitrstfooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-container .fitrstfooter a {
+  color: white;
+  text-decoration: none;
+  font-size: large;
+}
+.footer-container .secondfooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.footer-container .secondfooter h3 {
+  color: white;
+}
+.footer-container .secondfooter button {
+  background: none;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: xx-large;
+  cursor: pointer;
+  transition: 0.7s;
+}
+.footer-container .secondfooter button:hover {
+  color: rgb(212, 237, 49);
+}
+
+.portTitle {
+  opacity: 1 !important;
+}/*# sourceMappingURL=style.css.map */
