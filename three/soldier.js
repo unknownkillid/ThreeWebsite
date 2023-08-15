@@ -84,12 +84,11 @@ loader.load('three/model/scene.gltf', (gltf) => {
   SMGReload.volume = 1;
   
   let reloading = false; 
-
   let inspect = false;
   
   function reloadingOnKey() {
     addEventListener('keydown', (event) => {
-      if (event.keyCode === 82 && !reloading) {
+      if (event.keyCode === 82 && !reloading && !inspect) {
         reloadAction.reset(); 
         reloadAction.play();
         SMGReload.play();
@@ -101,7 +100,7 @@ loader.load('three/model/scene.gltf', (gltf) => {
         }, animationDuration);
       }
 
-      if (event.keyCode === 70) {
+      else if (event.keyCode === 70 && !inspect && !reloading) {
         inspectAction.reset();
         inspectAction.play();
         inspect = true;
