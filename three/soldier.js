@@ -1,7 +1,5 @@
 const scene = new THREE.Scene();
-// scene.background = null;
-
-
+scene.background = new THREE.Color(0xADD8E6);
 
 const camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.y = 0.6
@@ -48,29 +46,45 @@ onWindowResize();
 
 window.addEventListener('resize', onWindowResize);
 
+
+// const place = new THREE.GLTFLoader();
+// place.load('three/place/scene.gltf', (gltf) => {
+//   const city = gltf.scene;
+//   scene.add(city);
+
+//   city.rotation.x = 0.3;
+//   // city.rotation.y = -1;
+//   city.rotation.z = 1;
+//   // city.position.z = 40;
+//   city.position.x = -25;
+//   city.position.y = -13;
+
+//   city.scale.set(100, 100, 100);
+// })
+
 const loader = new THREE.GLTFLoader();
 let mixer;
 
 loader.load('three/model/scene.gltf', (gltf) => {
-  const model = gltf.scene;
-  scene.add(model);
+  const weapon = gltf.scene;
+  scene.add(weapon);
 
-  const bbox = new THREE.Box3().setFromObject(model);
+  const bbox = new THREE.Box3().setFromObject(weapon);
   const center = bbox.getCenter(new THREE.Vector3());
-  model.position.sub(center);
+  weapon.position.sub(center);
 
   camera.position.z = -18.5;
   camera.rotation.x = -0.2
   // camera.lookAt(center);
-  model.position.y = -2.7;
-  // model.position.x = 1.9;
-  model.position.z = -19.1;
-  model.rotation.x = 0.4
-  model.rotation.z = 0.1
-  model.rotation.y = 3.2;
-  model.scale.set(7, 7, 7);
+  weapon.position.y = -2.7;
+  // weapon.position.x = 1.9;
+  weapon.position.z = -19.1;
+  weapon.rotation.x = 0.4
+  weapon.rotation.z = 0.1
+  weapon.rotation.y = 3.2;
+  weapon.scale.set(7, 7, 7);
 
-  mixer = new THREE.AnimationMixer(model);
+  mixer = new THREE.AnimationMixer(weapon);
   const reloadAnimation = gltf.animations[4];
   const reloadAction = mixer.clipAction(reloadAnimation);
   reloadAction.setLoop(THREE.LoopOnce);
@@ -79,24 +93,51 @@ loader.load('three/model/scene.gltf', (gltf) => {
   const inspectAction = mixer.clipAction(inspectAnimation)
   inspectAction.setLoop(THREE.LoopOnce);
 
+  const shootingAnimation = gltf.animations[6]
+  const shootingAction = mixer.clipAction(shootingAnimation)
+  shootingAction.setLoop(THREE.LoopOnce);
+
+  const idleAnimation = gltf.animations[0]
+  const idleAction = mixer.clipAction(idleAnimation)
+  idleAction.setLoop(THREE.LoopTwice);
+
   const SMGReload = new Audio();
   SMGReload.src = 'sounds/SMGReload/reload.mp3'
   SMGReload.volume = 1;
+
+  const SMGShooting = new Audio();
+  SMGShooting.src = 'sounds/SMGReload/9mmShooting.mp3'
+  SMGShooting.volume = 1;
   
   let reloading = false; 
   let inspect = false;
+  let shooting = false;
+  let idle = true;
+
+  function idleFunction() {
+    if (idle) {
+      idleAction.play()
+    } else {
+      idleAction.stop();
+    }
+    requestAnimationFrame(idleFunction)
+  }
+
+  idleFunction();
   
   function reloadingOnKey() {
     addEventListener('keydown', (event) => {
       if (event.keyCode === 82 && !reloading && !inspect) {
         reloadAction.reset(); 
         reloadAction.play();
-        SMGReload.play();
+        // SMGReload.play();
         reloading = true;
+        idle = false;
   
         const animationDuration = reloadAnimation.duration * 1000;
         setTimeout(() => {
           reloading = false;
+          idle = true;
         }, animationDuration);
       }
 
@@ -104,26 +145,44 @@ loader.load('three/model/scene.gltf', (gltf) => {
         inspectAction.reset();
         inspectAction.play();
         inspect = true;
+        idle = false;
 
         const inspectDuration = inspectAnimation.duration * 1000
         setTimeout(() => {
           inspect = false;
+          idle = true;
         }, inspectDuration);
       } 
+
+      else if (event.keyCode === 81 && !inspect && !reloading && !shooting) {
+        shootingAction.reset();
+        shootingAction.play();
+        shooting = true;
+        idle = false;
+        // SMGShooting.loop = true;
+
+        const shootingDuration = shootingAnimation.duration * 280
+        setTimeout(() => {
+          shooting = false;
+          idle = true;
+        }, shootingDuration);
+      } else if (event.keyCode === 81) {
+        SMGShooting.play()
+      }
+   
     });
   
     requestAnimationFrame(reloadingOnKey);
   }
   
   reloadingOnKey();
-  
 });
 
 const animate = () => {
   requestAnimationFrame(animate);
   // controls.update();
   if (mixer) {
-    mixer.update(0.008);
+    mixer.update(0.02);
   }
   renderer.render(scene, camera);
 
